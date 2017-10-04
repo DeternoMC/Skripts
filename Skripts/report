@@ -1,0 +1,36 @@
+options:
+	tag: &8[&cServer&8]
+	
+command /check <text>:
+	usage: /check <player>
+	permission: deterno.report
+	permission message: You do not have permission to do this command.
+	trigger:
+		send "&8===== &bREPORT &8=====" to player
+		send "&c%arg 1% &bhas been reported &4%{report1.%arg 1%}% &btimes"
+		send "&c%arg 1% &bhas reported other users &4%{report2.%arg 1%}% &btimes"
+
+command /reportinfo
+	trigger:
+		send "&cReport &bskript made by &cDeterno" to player
+
+command /report <player> <text>:
+	usage: /report <player> <reason>
+	trigger:
+		if {report.cooldown.%player%} is false:
+			add 1 to {report1.%arg 1%}
+			add 1 to {report2.%player%}
+			send "&cReport sent to all online staff members" to player
+			loop all players:
+				if loop-player have permission "deterno.report":
+					send "&8===== &bREPORT &8=====" to loop-player
+					send "&bReport by: &c%player%" to loop-player
+					send "&bPlayer reported: &c%arg 1%" to loop-player
+					send "&bReason: &c%arg 2%" to loop-player
+			set {report.cooldown.%player%} to true
+			wait 60 seconds
+			set {report.cooldown.%player%} to false
+		if {report.cooldown.%player%} is true:
+			send "&cPlease wait before reporting again"
+on join:
+	set {report.cooldown.%player%} to false
