@@ -1,10 +1,10 @@
 options:
-	tag: &8[&cServer&8]
+	tag: &8[&cDeterno Report&8]
 	
 command /check <text>:
 	usage: /check <player>
 	permission: deterno.report
-	permission message: You do not have permission to do this command.
+	permission message: &cYou do not have permission to do this command.
 	trigger:
 		send "&8===== &bREPORT &8=====" to player
 		send "&c%arg 1% &bhas been reported &4%{report1.%arg 1%}% &btimes"
