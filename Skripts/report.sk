@@ -19,6 +19,11 @@ command /check <text>:
 command /reportinfo
 	trigger:
 		send "&cReport &bskript made by &cDeterno" to player
+		
+command /deterno:
+	trigger:
+		send "&cDeterno's &bskripts are currently being run on this server!" to player
+		stop
 
 command /report <player> <text>:
 	usage: /report <player> <reason>
