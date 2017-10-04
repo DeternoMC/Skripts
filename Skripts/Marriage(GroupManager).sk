@@ -1,0 +1,197 @@
+#########################################
+#                                       #
+#       Made by Deterno and FJouk       #
+#                                       #
+#########################################
+
+# Note: I felt like designing this better,
+# I might do it with the rest later
+
+# NOTE: THIS ONLY WORKS FOR GROUPMANAGER (THERE IS A PEX VERSION)
+
+# NOTE: THIS HAS NOT BEEN TESTED. If there are any errors, please create an issue! Thanks!
+
+options:
+#------------
+#    CONFIG     |
+#------------
+
+	#Main command (Default: mariage)
+	cmd.main: marriage	
+   
+	#Prefix (Default: &7[&bMARRIAGE&7]&r)
+	prefix: &7[&bMARRIAGE&7]&r	
+   
+#------------
+#    MESSAGES |
+#------------   
+    
+	# No Permission #
+	player.noperm: &cYou don't have enough permission!
+	partner.notonline: &cYour partner isn't online!
+	player.notonline: &cThis player isn't online!
+	
+	# WARNINGS #
+	player.noname: &eYou must set player's name!
+	request.none: &eYou don't have enought request!
+	player.inmarriage: &eThis player is already in marriage!
+	you.inmarriage: &eYou are already in marriage!
+	you.notmarriage: &eYou aren't in marriage!
+	
+	# NORMAL MESSAGES #
+	accepted: &aRequest accepted.
+	denied: &cRequest denied.
+	player.accepted: &aPlayer %player% accepted your request.
+	player.denied: &cPlayer %player% dienied your request.
+	you.divorce: &cYou are divorce with %{weed.%player%}%.
+	player.divorce: &cPlayer %player% divorce with you.
+	you.kiss: &aYou kissed %{weed.%player%}%.
+	player.kiss: &a%player% kiss you.
+	you.request: &aYou want to marry with %player-argument%
+	player.request: &a%player% wants to marry with you. Type &e/marriage marry %player% yes&a to accept or &e/marriage marry %player% no&a to deny.
+	
+	# INFO #
+	date: Marriage date
+	partner: Partner
+	kiss: Kiss counter
+   
+#------------
+# PERMISSIONS |
+#------------
+
+	#/marriage marry command
+	perm.marry: marry.marry
+   
+	#/marriage divorce command
+	perm.divorce: marry.divorce
+   
+	#/marriage tp command
+	perm.tp: marry.tp
+   
+	#/marriage kiss command
+	perm.kiss: marry.kiss
+   
+	#/marriage info
+	perm.info: marry.info
+	
+#------------
+#    CODE     |
+#------------ 
+on join:
+	set {request::%player%} to 0
+	if player has permission "perm.joined":
+		stop
+	else:
+		set {marry::%player%} to 0
+		wait 1 tick
+		command "manuaddp %player% perm.joined"
+command /{@cmd.main} <text> [<player>] [<text>]:
+	usage: &c/{@cmd.main} help
+	trigger:
+		if arg 1 is "help":
+			message "&e&m-----------------------------------------------------"
+			message "&b&l                                      &nMARRIAGE"
+			message ""
+			message "&b/{@cmd.main} help &f- &6Help command (this)"
+			message "&b/{@cmd.main} marry <player> &f- &6Marry with...."
+			message "&b/{@cmd.main} divorce &f- &6Divorce with...."
+			message "&b/{@cmd.main} tp &f- &6Teleport to partner"
+			message "&b/{@cmd.main} kiss &f- &6Kiss partner"
+			message "&b/{@cmd.main} info &f- &6About marriage"
+			message "&e&m-----------------------------------------------------"
+		if arg 1 is "marry":
+			if arg 2 is not set:
+				message "{@prefix} {@player.noname}"
+			else if arg 3 is "yes":
+				if {request::%player%} is 1:
+					set {weed.%player%} to player-argument
+					set {weed.%player-argument%} to player
+					add 1 to {marry::%player%} 
+					add 1 to {marry::%player-argument%} 
+					wait 1 tick
+					set {weed.day.%player%} to now
+					set {weed.day.%player-argument%} to now
+					message "{@prefix} {@accepted}"
+					message "{@prefix} {@player.accepted}" to {weed.%player%}
+				else:
+					message "{@prefix} {@request.none}"
+					stop
+			else if arg 3 is "no":
+				if player has permission "perm.marry":
+					if {request::%player%} is 1:
+						message "{@prefix} {@player.denied}" to player-argument
+					else:
+						message "{@prefix} {@request.none}"
+				else:
+					message "{@prefix} {@player.noperm}"
+			else:
+				if player has permission "perm.marry":
+					if {marry::%player%} is 0:
+						if {marry::%player-argument%} is 0:
+							if player-argument is not online:
+								message "{@prefix} {@player.notonline}"
+							else:
+								wait 1 tick
+								message "{@prefix} {@you.request}"
+								message "{@prefix} {@player.request}" to player-argument
+								set {request::%player-argument%} to 1
+						else:
+							message "{@prefix} {@player.inmarriage}"
+					else:
+						message "{@prefix} {@you.inmarriage}"
+				else:
+					message "{@prefix} {@player.noperm}"
+		if arg 1 is "divorce":	
+			if player has permission "perm.divorce":
+				if {marry::%player%} is 0:
+					message "{@prefix} {@you.notmarriage}"
+				else:
+					if arg 2 is not set:
+						message "{@prefix} {@you.divorce}" 
+						message "{@prefix} {@player.divorce}" to {weed.%player%}
+						wait 1 tick
+						set {marry::%player%} to 0
+						set {marry::%{weed.%player%}%} to 0
+						wait 1 tick
+						reset {weed.%player%}
+						reset {weed.%player-argument%}
+			else:
+				message "{@prefix} {@player.noperm}"
+		if arg 1 is "tp":
+			if player has permission "perm.tp":
+				if {marry::%player%} is 0:
+					message "{@prefix} {@you.notmarriage}"
+				else if {weed.%player%} is not online:
+					message "{@prefix} {@partner.notonline}"
+				else:
+					if arg 2 is not set:
+						teleport player to {weed.%player%}
+			else:
+				message "{@prefix} {@player.noperm}"
+		if arg 1 is "kiss":
+			if player has permission "perm.kiss":
+				if {marry::%player%} is 0:
+					message "{@prefix} {@you.notmarriage}"
+				else if {weed.%player%} is not online:
+					message "{@prefix} {@partner.notonline}"
+				else:
+					add 1 to {weed.pusinky.%player%}
+					add 1 to {weed.pusinky.%{weed.%player%}%}
+					message "{@prefix} {@you.kiss}"
+					message "{@prefix} {&player.kiss}" to {weed.%player%}
+			else:
+				message "{@prefix} {@player.noperm}"
+		if arg 1 is "info":
+			if player has permission "perm.info":
+				message "&e&m-----------------------------------------------------"
+				message "&b&l                                      &nMARRIAGE"
+				message ""
+				message "&b{@date}: &6%{weed.day.%player%}%"
+				message "&b{@partner}: %{weed.%player%}%"
+				message "&b{@kiss}: %{weed.pusinky.%player%}%"
+				message "&e&m-----------------------------------------------------"
+            
+command /deterno:
+	trigger:
+		send "&cDeterno's &bskripts are currently being run on this server!" to player
+		stop	
