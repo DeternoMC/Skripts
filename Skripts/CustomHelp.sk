@@ -11,33 +11,33 @@ command /help [<text>]:
 	permission: deterno.help
 	trigger:
 		if argument 1 is not set:
-			send "&8&m-+-------------+-"
-			send "&bServer&7:
-			send ""
-			send "&b/help &8- &7Get help"
-			send "&b/Command1 &8- &7command1"
-			send "&b/command2 &8- &7command2"
-			send "&b/command3 &8- &7command3"
-			send "&b/command4 &8- &7command4"
-			send "&b/command5 &8- &7command5"
-      send "&bHelp Menu &7by &cDeterno"
-			send "&8&m-+-------------+-"
+			send "&8&m-+-------------+-" to player
+			send "&bServer&7:" to player
+			send "" to player
+			send "&b/help &8- &7Get help" to player
+			send "&b/Command1 &8- &7command1" to player
+			send "&b/command2 &8- &7command2" to player
+			send "&b/command3 &8- &7command3" to player
+			send "&b/command4 &8- &7command4" to player
+			send "&b/command5 &8- &7command5" to player
+      			send "&bHelp Menu &7by &cDeterno" to player
+			send "&8&m-+-------------+-" to player
 			stop
 
 		if arg 1 is "2":
-			send "&8&m-+-------------+-"
-			send "&bServer&7:
-			send ""
-      send "&b/Command1 &8- &7command1"
-			send "&b/command2 &8- &7command2"
-			send "&b/command3 &8- &7command3"
-			send "&b/command4 &8- &7command4"
-			send "&b/command5 &8- &7command5"
-			send "&bHelp Menu &7by &cDeterno"
-			send "&8&m-+-------------+-"
+			send "&8&m-+-------------+-" to player
+			send "&bServer&7:" to player
+			send "" to player
+     			send "&b/Command1 &8- &7command1" to player
+			send "&b/command2 &8- &7command2" to player
+			send "&b/command3 &8- &7command3" to player
+			send "&b/command4 &8- &7command4" to player
+			send "&b/command5 &8- &7command5" to player
+			send "&bHelp Menu &7by &cDeterno" to player
+			send "&8&m-+-------------+-" to player
 			stop
 
 command /deterno:
 	trigger:
-		send "&cDeterno's &bskripts are currently being run on this server!"
+		send "&cDeterno's &bskripts are currently being run on this server!" to player
 		stop
