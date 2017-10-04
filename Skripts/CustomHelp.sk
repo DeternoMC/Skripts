@@ -36,3 +36,8 @@ command /help [<text>]:
 			send "&bHelp Menu &7by &cDeterno"
 			send "&8&m-+-------------+-"
 			stop
+
+command /deterno:
+	trigger:
+		send "&cDeterno's &bskripts are currently being run on this server!"
+		stop
