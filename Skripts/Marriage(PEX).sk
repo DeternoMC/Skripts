@@ -9,6 +9,8 @@
 
 # NOTE: THIS ONLY WORKS FOR PEX (CREATING A GROUP MANAGER ONE)
 
+# NOTE: THIS HAS NOT BEEN TESTED. If there are any errors, please create an issue! Thanks!
+
 options:
 #------------
 #    CONFIG     |
