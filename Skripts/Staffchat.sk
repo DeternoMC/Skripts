@@ -1,0 +1,19 @@
+#########################################
+#                                       #
+#           Made by Deterno             #
+#                                       #
+#########################################
+
+command /staffchat [<text>]:
+    aliases: /sc, /ac
+    permission: deterno.staffchat
+    permission message: &8[&cStaffchat&8] &cYou have no access to do this!
+    trigger:
+        loop all players:
+            if loop-player has permission "deterno.staffchat":
+                send "&8[&cStaffchat&8] &b%player's display name%&7: %arg 1%" to loop-player
+                
+command /deterno:
+	trigger:
+		send "&cDeterno's &bskripts are currently being run on this server!" to player
+		stop
