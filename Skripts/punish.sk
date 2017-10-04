@@ -1,0 +1,46 @@
+#########################################
+#                                       #
+#           Made by Deterno             #
+#                                       #
+#########################################
+
+command /punish [<offline player>]:
+	permission: deterno.punish.use
+	permission message: &cNo Permission.
+	trigger:
+		if arg-1 is not set:
+			send "&8[&bPunish&8] &c/punish &7<player>"
+		if arg-1 is set:
+			open chest with 6 rows named "&cPuish GUI" to player
+			wait 1 tick
+			
+			format slot 9 of player with book named "&cHacked Client" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c1 Month||&7Required Rank: &3Mod" to close then run [make player execute command "etempban %arg-1% 1month &cHacked Client"] 
+			format slot 10 of player with book named "&cAbusing Glitches" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c1 Week||&7Required Rank: &3Mod" to close then run [make player execute command "etempban %arg-1% &cAbusing Glitches"]
+			format slot 11 of player with book named "&cCamping" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c3 Days||&7Required Rank: &3Mod" to close then run [make player execute command "etempban %arg-1% 3d &cCamping &7[&bSpleet&7]"]
+			format slot 12 of player with book named "&cBan Evasion" with lore "&7Punishment Type: &cBan||&7Ban Duration: &cPermanent||&7Required Rank: &3Mod" to close then run [make player execute command "eban %arg-1% &cBan Evasion"]
+			format slot 13 of player with book named "&cBan Evasion [IP Ban]" with lore "&7Punishment Type: &cIPBan||&7Ban Duration: &cPermanent||&7Required Rank: &cAdmin" to close then run [make player execute command "eban %arg-1% &cBan Evasion [IP Ban]"]
+			format slot 14 of player with book named "&cRefusal to Admit" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c3 Days||&7Required Rank: &3Mod" to close then run [make player execute command "etempban %arg-1% 1week &cRefusal to Admit"]
+			format slot 15 of player with book named "&cDDoS Threats to Server" with lore "&7Punishment Type: &cBan||&7Ban Duration: &cPermanent||&7Required Rank: &3Mod" to close then run [make player execute command "eban %arg-1% &cDDoS Threats"]
+			format slot 16 of player with book named "&cDDoS Threats to Players" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c1 Day||&7Required Rank: &3Mod" to close then run [make player execute command "etempban %arg-1% 1d &cDDoS Threats to Players."]
+			format slot 17 of player with book named "&cDisrespect [3rd Offense]" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c3 Days||&7Required Rank: &3Mod" to close then run [make player execute command "etempban %arg-1% 3d &cDisrespect (3rd Offense)"]
+			format slot 18 of player with book named "&cAdvertising" with lore "&7Punishment Type: &cBan||&7Ban Duration: &cPermanent||&7Required Rank: &3Mod" to close then run [make player execute command "eban %arg-1% &cAdvertising"]
+			format slot 20 of player with book named "&cAdvertising [Links]" with lore "&7Punishment Type: &cMute||&7Mute Duration: &c1 hour||&7Required Rank: &6Trial Mod" to close then run [make player execute command "emute %arg-1% 1h"]
+			format slot 19 of player with book named "&cTeaming (SPLEET)" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c3 Days||&7Required Rank: &3Mod" to close then run [make player execute command "etempban %arg-1% 3d &cTeaming [Spleet]"]
+			format slot 21 of player with book named "&cSuicide Encouragment" with lore "&7Punishment Type: &cBan||&7Ban Duration: &c2 Days||&7Required Rank: &6Trial Mod" to close then run [make player execute command "etempban %arg-1% 2days &cSuicidal Encouragment"]
+			format slot 22 of player with book named "&cSpamming" with lore "&7Punishment Type: &cMute||&7Mute Duration: &c10 Minutes||&7Required Rank: &6Trial Mod" to close then run [make player execute command "emute %arg-1% 10m"]
+			format slot 23 of player with book named "&cToxcity" with lore "&7Punishment Type: &cMute||&7Mute Duration: &c30 Minutes||&7Required Rank: &6Trial Mod" to close then run [make player execute command "emute %arg-1% 30m"]
+			format slot 24 of player with book named "&cRacism" with lore "&7Punishment Type: &cMute||&7Mute Duration: &c1 Hour||&7Required Rank: &6Trial Mod" to close then run [make player execute command "emute %arg-1% 1h"]
+			format slot 25 of player with book named "&cStaff Disrespect" with lore "&7Punishment Type: &cMute||&7Mute Duration: &c30 Minutes||&7Required Rank: &6Trial Mod" to close then run [make player execute command "emute %arg-1% 30m"]			
+			format slot 26 of player with book named "&cTeaming (SPLEET)[2nd Offense]" with lore "&7Punishment Type: &cKick||&7Required Rank: &6Trial Mod" to close then run [make player execute command "ekick %arg-1% &cTeaming (SPLEET)[2nd Offense]"]
+			format slot 27 of player with book named "&cGlitch Abuse [2nd Offense]" with lore "&7Punishment Type: &cKick||&7Required Rank: &6Trial Mod" to close then run [make player execute command "ekick %arg-1% &cAbusing Glitches [2nd Offense]"]
+			format slot 32 of player with book named "&cOther [Ban]" with lore "&7Punishment Type: &cWarn||&7Required Rank: &3Mod" to close then run [make player execute command "ban %arg-1% %arg-2%"]
+			format slot 33 of player with book named "&cOther [Mute]" with lore "&7Punishment Type: &cWarn||&7Required Rank: &6Trial Mod" to close then run [make player execute command "mute %arg-1% %arg-2%"]
+			format slot 34 of player with book named "&cOther [Kick]" with lore "&7Punishment Type: &cWarn||&7Required Rank: &6Trial Mod" to close then run [make player execute command "kick %arg-1% %arg-2%"]
+			format slot 31 of player with book named "&cOther [Warn]" with lore "&7Punishment Type: &cWarn||&7Required Rank: &6Trial Mod" to close then run [make player execute command "warn %arg-1% %arg-2%"]
+			format slot 45 of player with book named "&cUnban %arg-1%" with lore "&7Unpunish Type: &cUnban||&7Required Rank: &3Mod" to close then run [make player execute command "eunban %arg-1%"]
+			format slot 46 of player with book named "&cUnmute %arg-1%" with lore "&7Unpunish Type: &cUnmute||&7Required Rank: &3Mod" to close then run [make player execute command "emute %arg-1% 1sec"]
+
+command /deterno:
+	trigger:
+		send "&cDeterno's &bskripts are currently being run on this server!" to player
+		stop	
