@@ -1,0 +1,38 @@
+#########################################
+#                                       #
+#           Made by Deterno             #
+#                                       #
+#  Note: Make sure to edit all the      #
+#  custom help messages!                #
+#                                       #
+#########################################
+
+command /help [<text>]:
+	permission: deterno.help
+	trigger:
+		if argument 1 is not set:
+			send "&8&m-+-------------+-"
+			send "&bServer&7:
+			send ""
+			send "&b/help &8- &7Get help"
+			send "&b/Command1 &8- &7command1"
+			send "&b/command2 &8- &7command2"
+			send "&b/command3 &8- &7command3"
+			send "&b/command4 &8- &7command4"
+			send "&b/command5 &8- &7command5"
+      send "&bHelp Menu &7by &cDeterno"
+			send "&8&m-+-------------+-"
+			stop
+
+		if arg 1 is "2":
+			send "&8&m-+-------------+-"
+			send "&bServer&7:
+			send ""
+      send "&b/Command1 &8- &7command1"
+			send "&b/command2 &8- &7command2"
+			send "&b/command3 &8- &7command3"
+			send "&b/command4 &8- &7command4"
+			send "&b/command5 &8- &7command5"
+			send "&bHelp Menu &7by &cDeterno"
+			send "&8&m-+-------------+-"
+			stop
